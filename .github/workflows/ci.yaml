@@ -63,6 +63,6 @@ jobs:
       uses: werf/actions/run@v2
       with:
         image: app-test-4
-        args: curl -v -f http://localhost:8001 || exit 1
+        args: sh -c "curl -v -f http://localhost:8001 || exit 1"
       env:
         WERF_DOCKER_OPTIONS: "-d -p 8000:8000"
