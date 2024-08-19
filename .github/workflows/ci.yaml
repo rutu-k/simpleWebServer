@@ -10,10 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Install Minikube
       run: |
@@ -39,6 +35,11 @@ jobs:
     - name: Run kubectl commands
       run: |
         kubectl get nodes
+
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Build
       uses: werf/actions/build@v2
