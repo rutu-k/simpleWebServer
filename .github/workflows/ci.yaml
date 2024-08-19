@@ -65,7 +65,7 @@ jobs:
         image: app-test-4
         args: sh -c "curl http://localhost:8000"
       env:
-        WERF_DOCKER_OPTIONS: "-it -p 8000:8000"
+        WERF_DOCKER_OPTIONS: "-i -p 8000:8000"
     # - name: Verify Acceptance Tests
     #   run: |
     #     # Run the container with correct port mapping
