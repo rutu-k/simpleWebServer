@@ -22,8 +22,7 @@ jobs:
         sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
         minikube version
-        git add .
-        git commit -m "adding minikube"
+        rm minikube-linux-amd64
 
     - name: Start Minikube Cluster
       run: |
