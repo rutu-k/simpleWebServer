@@ -72,4 +72,4 @@ jobs:
         docker ps
         # sleep 10 # Wait for the application to start
         # # Run acceptance tests
-        # curl http://localhost:8000 || exit 1
+        curl http://localhost:8000 || exit 1
