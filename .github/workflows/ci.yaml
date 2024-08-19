@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up k3d
+      run: |
+        curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+
+        k3d --version
+
+    - name: Create k3d cluster
+      run: |
+        # Create k3d cluster
+        k3d cluster create my-cluster1
+
+        # Write kubeconfig to the default location
+        k3d kubeconfig write my-cluster1
+
+        # Debug: Check kubeconfig file content
+        cat $HOME/.kube/config
+        kubectl config view
+
+    - name: Install kubectl
+      run: sudo apt-get install -y kubectl
+
+    - name: Run kubectl commands
+      run: |
+        kubectl get nodes
+
+    - name: Build
+      uses: werf/actions/build@v2
+
+    - name: Run
+      uses: werf/actions/run@v2
+      with:
+        image: app-test-3
+        args: cd src && go test -v
