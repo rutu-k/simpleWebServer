@@ -46,5 +46,5 @@ jobs:
     - name: Run
       uses: werf/actions/run@v2
       with:
-        image: app-test-3
+        image: app-test-4
         args: cd src && go test -v
