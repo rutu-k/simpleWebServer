@@ -19,6 +19,9 @@ FROM alpine:latest
 # Copy the built application from the builder stage
 COPY --from=builder /app/server /server
 
+# Ensure the executable has the correct permissions
+RUN chmod +x /server
+
 # Set the entrypoint for the container
 ENTRYPOINT ["/server"]
 
