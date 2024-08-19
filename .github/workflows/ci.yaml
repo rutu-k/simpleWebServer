@@ -59,17 +59,17 @@ jobs:
     - name: Build
       uses: werf/actions/build@v2
 
-    # - name: Run acceptance tests
-    #   uses: werf/actions/run@v2
-    #   with:
-    #     image: app-test-4
-    #     args: curl -v -f http://localhost:8000 || exit 1
-    #   env:
-    #     WERF_DOCKER_OPTIONS: "-p 8000:8000"
-    - name: Verify Acceptance Tests
-      run: |
-        # Run the container with correct port mapping
-        docker ps
-        # sleep 10 # Wait for the application to start
-        # # Run acceptance tests
-        # curl -v -f http://localhost:8000 || exit 1
+    - name: Run acceptance tests
+      uses: werf/actions/run@v2
+      with:
+        image: app-test-4
+        args: sh -c "curl http://localhost:8000"
+      env:
+        WERF_DOCKER_OPTIONS: "-p 8000:8000"
+    # - name: Verify Acceptance Tests
+    #   run: |
+    #     # Run the container with correct port mapping
+    #     docker ps
+    #     # sleep 10 # Wait for the application to start
+    #     # # Run acceptance tests
+    #     # curl -v -f http://localhost:8000 || exit 1
