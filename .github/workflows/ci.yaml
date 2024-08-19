@@ -64,3 +64,5 @@ jobs:
       with:
         image: app-test-4
         args: curl -f http://localhost:8000 || exit 1
+      env:
+        WERF_DOCKER_OPTIONS: "-d -p 8000:8000"
