@@ -63,7 +63,7 @@ jobs:
       uses: werf/actions/run@v2
       with:
         image: app-test-4
-        args: sh -c "./src/server && curl http://localhost:8000"
+        args: ./src/server && curl -v http://localhost:8000
       env:
         WERF_DOCKER_OPTIONS: "-d -p 8000:8000"
     # - name: Verify Acceptance Tests
