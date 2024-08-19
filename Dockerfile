@@ -1,21 +1,26 @@
-FROM golang:1.18
+# Use Go 1.18 or later as the base image
+FROM golang:1.18 AS builder
 
-WORKDIR $GOPATH/src
-# Copy everything from the current directory to the PWD(Present Working Directory) inside the container
+# Set the working directory
+WORKDIR /app
+
+# Copy the source code into the container
 COPY . .
 
-RUN pwd  && echo $GOPATH
-# Download all the dependencies
-RUN cd src && go get -d -v ./...
-# Install the package
-RUN cd src && go install -v ./...
-# running sever
-RUN cd src && go build -o server
+# Download Go module dependencies
+RUN go mod tidy
 
-RUN pwd && ls
+# Build the Go application
+RUN go build -o server ./src
 
-# This container exposes port 8080 to the outside world
+# Use a minimal base image for the final stage
+FROM alpine:latest
+
+# Copy the built application from the builder stage
+COPY --from=builder /app/server /server
+
+# Set the entrypoint for the container
+ENTRYPOINT ["/server"]
+
+# Expose port 8000
 EXPOSE 8000
-
-# Run the executable
-CMD ["./src/server"]
