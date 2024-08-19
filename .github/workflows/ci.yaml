@@ -15,22 +15,21 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Set up k3d
+    - name: Install Minikube
       run: |
-        curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
+        curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+        sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-        k3d --version
+        minikube version
 
-    - name: Create k3d cluster
+    - name: Start Minikube Cluster
       run: |
-        # Create k3d cluster
-        k3d cluster create my-cluster1
+        minikube start --driver=docker
 
-        # Write kubeconfig to the default location
-        k3d kubeconfig write my-cluster1
+        # Set up kubectl to use Minikube's context
+        kubectl config use-context minikube
 
         # Debug: Check kubeconfig file content
-        cat $HOME/.kube/config
         kubectl config view
 
     - name: Install kubectl
