@@ -1,4 +1,4 @@
-FROM golang:1.10
+FROM golang:1.18
 
 WORKDIR $GOPATH/src
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
