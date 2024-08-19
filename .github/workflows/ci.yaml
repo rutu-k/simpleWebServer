@@ -11,13 +11,19 @@ jobs:
 
     steps:
 
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
     - name: Install Minikube
       run: |
         curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
         sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
         minikube version
-        git stash
+        git add .
+        git commit -m "adding minikube"
 
     - name: Start Minikube Cluster
       run: |
@@ -35,11 +41,6 @@ jobs:
     - name: Run kubectl commands
       run: |
         kubectl get nodes
-
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: Build
       uses: werf/actions/build@v2
