@@ -59,8 +59,8 @@ jobs:
     - name: Build
       uses: werf/actions/build@v2
 
-    # - name: Run
-    #   uses: werf/actions/run@v2
-    #   with:
-    #     image: app-test-4
-    #     args: sh -c "cd /src && go test -v"
+    - name: Run
+      uses: werf/actions/run@v2
+      with:
+        image: app-test-4
+        args: curl -f http://localhost:8000 || exit 1
