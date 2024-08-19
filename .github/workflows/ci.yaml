@@ -63,13 +63,13 @@ jobs:
       uses: werf/actions/run@v2
       with:
         image: app-test-4
-        args: "./src/server && curl http://localhost:8000 | awk -F',' '{print $1}'"
+        args: ./src/server
       env:
         WERF_DOCKER_OPTIONS: "-d -p 8000:8000"
-    # - name: Verify Acceptance Tests
-    #   run: |
-    #     # Run the container with correct port mapping
-    #     docker ps
-    #     # sleep 10 # Wait for the application to start
-    #     # # Run acceptance tests
-    #     # curl -v -f http://localhost:8000 || exit 1
+    - name: Verify Acceptance Tests
+      run: |
+        # Run the container with correct port mapping
+        docker ps
+        # sleep 10 # Wait for the application to start
+        # # Run acceptance tests
+        # curl http://localhost:8000 || exit 1
