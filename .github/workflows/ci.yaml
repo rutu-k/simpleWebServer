@@ -59,10 +59,10 @@ jobs:
     - name: Build
       uses: werf/actions/build@v2
 
-    - name: Run
+    - name: Run acceptance tests
       uses: werf/actions/run@v2
       with:
         image: app-test-4
-        args: curl -f http://localhost:8000 || exit 1
+        args: curl -v -f http://localhost:8000 || exit 1
       env:
         WERF_DOCKER_OPTIONS: "-d -p 8000:8000"
