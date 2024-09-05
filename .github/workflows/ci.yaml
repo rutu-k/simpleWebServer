@@ -58,22 +58,24 @@ jobs:
     - name: Install werf CLI  
       uses: werf/actions/install@v2
 
-    - name: Log in to DockerHub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
+    # - name: Log in to DockerHub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
+    #     password: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
         
     # - name: Configure Werf Docker Registry
     #   run: |
     #     werf ci-env github --as-file=true --output-file-path=werf.env
     #     source werf.env
-    - name: Run werf commands
-      run: |
-        source $(werf ci-env github --as-file)
+    # - name: Run werf commands
+    #   run: |
+    #     source $(werf ci-env github --as-file)
         
     - name: Build
       uses: werf/actions/build@v2
+      with:
+        repo: ${{ secrets.WERF_REPO }}
     #   env:
     #     WERF_REPO: ${{ secrets.WERF_REPO }}
     #     WERF_REPO_DOCKER_HUB_USERNAME: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
