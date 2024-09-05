@@ -78,7 +78,7 @@ jobs:
       env:
         WERF_REPO: ${{ secrets.WERF_REPO }}/simplewebserver
         WERF_REPO_DOCKER_HUB_USERNAME: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
-        WERF_REPO_DOCKER_HUB_PASSWORD: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
+        # WERF_REPO_DOCKER_HUB_PASSWORD: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
         WERF_REPO_DOCKER_HUB_TOKEN: ${{ secrets.WERF_REPO_DOCKER_HUB_TOKEN }}
         WERF_TAG_CUSTOM_TAG1: 1.0
 
