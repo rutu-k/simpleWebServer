@@ -55,10 +55,8 @@ jobs:
     # - name: Run kubectl commands
     #   run: |
     #     kubectl get nodes
-    - name: Install Werf
-      run: |
-        curl -L https://werf.io/install.sh | bash
-        werf version
+    - name: Install werf CLI  
+      uses: werf/actions/install@v2
 
     - name: Log in to DockerHub
       uses: docker/login-action@v2
