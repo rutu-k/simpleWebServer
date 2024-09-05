@@ -60,8 +60,10 @@ jobs:
     #   uses: werf/actions/build-and-publish@master
     - name: Build
       uses: werf/actions/build@v2
-      with:
-        repo: incrediblehulk/simplewebserver
+      env:
+        WERF_REPO: ${{ secrets.WERF_REPO }}
+        WERF_REPO_DOCKER_HUB_USERNAME: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
+        WERF_REPO_DOCKER_HUB_PASSWORD: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
 
     - name: Run acceptance tests
       uses: werf/actions/run@v2
