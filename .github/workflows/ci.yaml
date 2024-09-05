@@ -55,12 +55,21 @@ jobs:
     # - name: Run kubectl commands
     #   run: |
     #     kubectl get nodes
+    - name: Install Werf
+      run: |
+        curl -L https://werf.io/install.sh | bash
+        werf version
 
     - name: Log in to DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
         password: ${{ secrets.WERF_REPO_DOCKER_HUB_PASSWORD }}
+        
+    - name: Configure Werf Docker Registry
+      run: |
+        werf ci-env github --as-file=true --output-file-path=werf.env
+        source werf.env
         
     # - name: Build
     #   uses: werf/actions/build@v2
