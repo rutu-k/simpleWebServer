@@ -71,7 +71,7 @@ jobs:
     
     - name: Run werf build
       run: |
-        werf build --repo ${{ secrets.WERF_REPO }}/simplewebserver --repo-docker-hub-username=${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }} --repo-docker-hub-token=${{ secrets.WERF_REPO_DOCKER_HUB_TOKEN }}
+        werf build --repo index.docker.io/${{ secrets.WERF_REPO }}/simplewebserver --repo-docker-hub-username=${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }} --repo-docker-hub-token=${{ secrets.WERF_REPO_DOCKER_HUB_TOKEN }}
         
     # - name: Build
     #   uses: werf/actions/build@v2
