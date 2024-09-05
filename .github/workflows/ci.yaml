@@ -56,10 +56,12 @@ jobs:
       run: |
         kubectl get nodes
 
-    - name: Build and Publish
-      uses: werf/actions/build-and-publish@master
-    # - name: Build
-    #   uses: werf/actions/build@v2
+    # - name: Build and Publish
+    #   uses: werf/actions/build-and-publish@master
+    - name: Build
+      uses: werf/actions/build@v2
+      with:
+        repo: incrediblehulk/simplewebserver
 
     - name: Run acceptance tests
       uses: werf/actions/run@v2
