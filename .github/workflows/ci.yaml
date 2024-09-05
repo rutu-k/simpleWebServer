@@ -16,20 +16,20 @@ jobs:
       with:
         fetch-depth: 0
 
-    # - name: Set up Go
-    #   uses: actions/setup-go@v3
-    #   with:
-    #     go-version: '1.18'
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.18'
 
-    # - name: Install Go dependencies
-    #   run: |
-    #     cd src
-    #     go mod tidy
+    - name: Install Go dependencies
+      run: |
+        cd src
+        go mod tidy
 
-    # - name: Run unit tests
-    #   run: |
-    #     cd src
-    #     go test -v
+    - name: Run unit tests
+      run: |
+        cd src
+        go test -v
 
     # - name: Install Minikube
     #   run: |
@@ -69,8 +69,8 @@ jobs:
         werf ci-env github --as-file=true --output-file-path=werf.env
         source werf.env
         
-    # - name: Build
-    #   uses: werf/actions/build@v2
+    - name: Build
+      uses: werf/actions/build@v2
     #   env:
     #     WERF_REPO: ${{ secrets.WERF_REPO }}
     #     WERF_REPO_DOCKER_HUB_USERNAME: ${{ secrets.WERF_REPO_DOCKER_HUB_USERNAME }}
