@@ -1,5 +1,5 @@
 project: werf-guide-app
 configVersion: 1
 ---
-image: app-test-4
+image: app-test-5
 dockerfile: Dockerfile
